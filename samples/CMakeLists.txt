@@ -20,8 +20,8 @@ find_package(catkin REQUIRED COMPONENTS
     # 3rd modules for ROS, like Eigen
     cmake_modules
     # local packages
-    segmenters_lib
-    roi_filters_lib
+    segmenters
+    roi_filters
 )
 
 ## System dependencies are found with CMake's conventions
@@ -60,4 +60,7 @@ target_link_libraries(${PROJECT_NAME}_node
 ## Install ##
 #############
 
-# ...
+install(TARGETS ${PROJECT_NAME}_node
+        ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+        LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+        RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})

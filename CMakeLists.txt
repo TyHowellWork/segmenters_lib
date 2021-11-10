@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(segmenters_lib)
+project(segmenters)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -20,8 +20,8 @@ find_package(catkin REQUIRED COMPONENTS
     # 3rd modules for ROS, like Eigen
     cmake_modules
     # local packages
-    common_lib
-    object_builders_lib
+    common
+    object_builders
 )
 
 ## System dependencies are found with CMake's conventions
@@ -48,10 +48,10 @@ find_package(Eigen3 REQUIRED)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-    CATKIN_DEPENDS object_builders_lib
+    CATKIN_DEPENDS object_builders
     #  DEPENDS system_lib
     INCLUDE_DIRS include
-    LIBRARIES segmenters_lib
+    LIBRARIES segmenters
 )
 
 
@@ -92,7 +92,13 @@ target_link_libraries(${PROJECT_NAME}
 ## Install ##
 #############
 
-# ...
+install(TARGETS ${PROJECT_NAME}
+        ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+        LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+        RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
+
+install(DIRECTORY include/${PROJECT_NAME}/
+        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
 
 
 #############
